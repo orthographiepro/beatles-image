@@ -20,11 +20,5 @@ dotarray = [
 
 
 my_image = lego_image()
-my_image.set_original_image("./origin_images/bowie.jpeg")
-
-for dot in dotarray:
-    my_image.add_dot(dot)
-
-my_image.shrink()
-my_image.quantize_greedy()
-my_image.show_spaced()
+path = "origin_images/bowie.png"
+my_image.build_image(path, dotarray)

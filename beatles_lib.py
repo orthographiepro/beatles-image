@@ -201,4 +201,14 @@ class lego_image:
     def show_slice_all(self):
         for i in range(9):
             self.show_slice(i)
+
+
+    def build_image(self, image_path: str, dotlist):
+        self.set_original_image(image_path)
+        for dot in dotlist:
+            self.add_dot(dot)
+
+        self.shrink()
+        self.quantize_greedy_randomized()
+        self.show_spaced()
                 

@@ -12,14 +12,14 @@ Experienced best results using the greedy randomized quantization algorithm.
 You might want to customize build_image() to fit your needs:
 
 ### quantization
-    quantize_greedy() - self explanatory, images contain fragments due to the linear iteration when using up all the bricks of one color
-    quantize_greedy_randomized() - no more fragments (yay!), yet you might still have some issues in the image since small details such as pupils are improbable to hit at the beginning and thus might not get a strong color such as black to emphasize the contrast.
-    also look at the experimental methods
+* quantize_greedy() - self explanatory, images contain fragments due to the linear iteration when using up all the bricks of one color
+* quantize_greedy_randomized() - no more fragments (yay!), yet you might still have some issues in the image since small details such as pupils are improbable to hit at the beginning and thus might not get a strong color such as black to emphasize the contrast.
+* also look at the experimental methods
 
 ### displaying the image
-    show() - simple popup
-    show_spaced() - more lego-ish
-    show_slice_all() - opens nine popups, one for each 16x16 base plate
+* show() - simple popup
+* show_spaced() - more lego-ish
+* show_slice_all() - opens nine popups, one for each 16x16 base plate
 
 
 

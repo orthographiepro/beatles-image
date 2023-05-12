@@ -148,23 +148,31 @@ class lego_image:
                 
 
     def make_spaced(self, input_img, shiny = 50):
-        print_array = np.zeros([input_img.shape[0] * 4, input_img.shape[1] * 4, 3], dtype=np.uint8)
-        
+        print_array = np.zeros([input_img.shape[0] * 6 - 1, input_img.shape[1] * 6 - 1, 3], dtype=np.uint8)
+
         for i in range(input_img.shape[0]):
             for j in range(input_img.shape[1]):
-
-                for u in range(4):
-                    for v in range(4):
-                        if (u == 0 or u == 3) and (v == 0 or v == 3):
-                            continue
-                        if u == 1 and v == 1:
-                            print_array[i*4+u, j*4+v, 0] = min(input_img[i, j, 0] + shiny, 255)
-                            print_array[i*4+u, j*4+v, 1] = min(input_img[i, j, 1] + shiny, 255)
-                            print_array[i*4+u, j*4+v, 2] = min(input_img[i, j, 2] + shiny, 255)
-                            continue
-                        print_array[i*4+u, j*4+v, :] = input_img[i, j, :]
-        
+                self.draw_dot(print_array, i*6, j*6, color=input_img[i, j, :])
+                
         return print_array
+
+
+    def draw_dot(self, print_array, i: int, j: int, color, shiny = 50):
+        """draws a 5*5 dot in the print_array, so that the upper left circle-corner is located at (i,j)"""
+        
+        for u in range(5):
+            for v in range(5):
+
+                if (u,v) in [(0,0), (0, 4), (4, 0), (4, 4)]:
+                    continue
+
+                if (u, v) in [(2, 1), (1, 2)]:
+                    print_array[i+u, j+v, 0] = min(color[0] + shiny, 255)
+                    print_array[i+u, j+v, 1] = min(color[1] + shiny, 255)
+                    print_array[i+u, j+v, 2] = min(color[2] + shiny, 255)
+                    continue
+
+                print_array[i+u, j+v, :] = color
 
     
     def show_spaced(self, shiny = 50):
